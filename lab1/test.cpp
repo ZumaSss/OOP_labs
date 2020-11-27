@@ -15,14 +15,16 @@ TEST(test, TestingList) {
     newList.push_back(value_type());
     newList.push_back(value_type());
     newList.push_back(value_type());
+    newList.push_back(value_type());
+    newList.push_back(value_type());
 
-    EXPECT_EQ(newList.size(), 3);
+    EXPECT_EQ(newList.size(), 5);
 
     newList.push_front(value_type());
     newList.push_front(value_type());
     newList.push_front(value_type());
 
-    EXPECT_EQ(newList.size(), 6);
+    EXPECT_EQ(newList.size(), 8);
 
     newList.clear();
     ASSERT_TRUE(newList.empty());
@@ -79,6 +81,33 @@ TEST(test, TestingList) {
 
     LinkedList moveList = std::move(secondList);
     EXPECT_EQ(moveList, newList);
+}
+
+TEST(test, TestingListOperators) {
+    LinkedList newList1, newList2;
+    ASSERT_TRUE(newList1.empty());
+    ASSERT_TRUE(newList2.empty());
+
+    newList1.push_back(value_type());
+    newList1 += newList2;
+
+    EXPECT_EQ(newList1.size(), 1);
+
+    newList2.push_back(value_type());
+    newList2.push_back(value_type());
+    newList2.push_back(value_type());
+    newList2.push_back(value_type());
+    newList2.push_back(value_type());
+
+    newList1 += newList2;
+
+    EXPECT_EQ(newList1.size(), 6);
+
+    newList2.clear();
+    EXPECT_EQ(newList2.size(), 0);
+
+    newList1.clear();
+    EXPECT_EQ(newList1.size(), 0);
 }
 
 TEST(test, TestingIterators) {
