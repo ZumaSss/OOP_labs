@@ -4,30 +4,30 @@
 using std::logic_error;
 
 LinkedList::LinkedList() {
-    tail = new Node();
-    tail -> prev = tail;
-    tail -> next = tail;
+    fictNode = new Node();
+    fictNode -> prev = fictNode;
+    fictNode -> next = fictNode;
 }
 
 LinkedList::LinkedList(const LinkedList &other) {
-    tail = new Node();
-    tail -> prev = tail;
-    tail -> next = tail;
+    fictNode = new Node();
+    fictNode -> prev = fictNode;
+    fictNode -> next = fictNode;
     for (LinkedList::const_iterator it = other.cbegin(); it != other.cend(); ++it) {
         push_back(*it);
     }
 }
 
 LinkedList::LinkedList(LinkedList &&other) noexcept {
-    tail = other.tail;
+    fictNode = other.fictNode;
     capacity = other.capacity;
-    other.tail = nullptr;
+    other.fictNode = nullptr;
     other.capacity = 0;
 }
 
 LinkedList::~LinkedList() {
     clear();
-    delete tail;
+    delete fictNode;
 }
 
 LinkedList &LinkedList::operator=(const LinkedList &other) {
@@ -40,9 +40,9 @@ LinkedList &LinkedList::operator=(const LinkedList &other) {
 
 LinkedList &LinkedList::operator=(LinkedList &&other) {
     clear();
-    delete tail;
-    tail = other.tail;
-    other.tail = nullptr;
+    delete fictNode;
+    fictNode = other.fictNode;
+    other.fictNode = nullptr;
     capacity = other.capacity;
     other.capacity = 0;
     return *this;
@@ -57,47 +57,47 @@ bool LinkedList::empty() const {
 }
 
 LinkedList::iterator LinkedList::begin() {
-    return LinkedList::iterator(tail -> next);
+    return LinkedList::iterator(fictNode -> next);
 }
 
 LinkedList::const_iterator LinkedList::cbegin() const {
-    return LinkedList::const_iterator(tail -> next);
+    return LinkedList::const_iterator(fictNode -> next);
 }
 
 LinkedList::iterator LinkedList::end() {
-    return LinkedList::iterator(tail);
+    return LinkedList::iterator(fictNode);
 }
 
 LinkedList::const_iterator LinkedList::cend() const {
-    return LinkedList::const_iterator(tail);
+    return LinkedList::const_iterator(fictNode);
 }
 
 value_type &LinkedList::front() {
     if (empty()) {
         throw std::logic_error("The list is empty!");
     }
-    return tail -> next -> value;
+    return fictNode -> next -> value;
 }
 
 const value_type &LinkedList::front() const {
     if (empty()) {
         throw std::logic_error("The list is empty!");
     }
-    return tail -> next -> value;
+    return fictNode -> next -> value;
 }
 
 value_type &LinkedList::back() {
     if (empty()) {
         throw std::logic_error("The list is empty!");
     }
-    return tail -> prev -> value;
+    return fictNode -> prev -> value;
 }
 
 const value_type &LinkedList::back() const {
     if (empty()) {
         throw std::logic_error("The list is empty!");
     }
-    return tail -> prev -> value;
+    return fictNode -> prev -> value;
 }
 
 LinkedList::iterator LinkedList::erase(LinkedList::iterator position) {
