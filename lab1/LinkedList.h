@@ -16,7 +16,7 @@ class LinkedList {
         explicit Node(value_type val, Node* prev, Node* next);
     };
 
-    Node* tail;
+    Node* fictNode;
     int capacity = 0;
 
 public:
@@ -71,7 +71,7 @@ public:
     /* Конструкторы */
     LinkedList();
     LinkedList(const LinkedList & other);
-    LinkedList(LinkedList && other) noexcept ;
+    LinkedList(LinkedList && other) noexcept;
 
     /* Деструктор */
     ~LinkedList();
