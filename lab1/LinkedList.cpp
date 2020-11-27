@@ -106,6 +106,7 @@ LinkedList::iterator LinkedList::erase(LinkedList::iterator position) {
     beforePos -> next = afterPos;
     afterPos -> prev = beforePos;
     delete position.curInList;
+    --capacity;
     return LinkedList::iterator(beforePos);
 }
 
@@ -142,7 +143,6 @@ void LinkedList::pop_back() {
         throw std::logic_error("The list is empty!");
     }
     erase(end() - 1);
-    --capacity;
 }
 
 void LinkedList::pop_front() {
@@ -150,17 +150,14 @@ void LinkedList::pop_front() {
         throw std::logic_error("The list is empty!");
     }
     erase(begin());
-    --capacity;
 }
 
 void LinkedList::push_back(const value_type &value) {
     insert(end(), value);
-    ++capacity;
 }
 
 void LinkedList::push_front(const value_type &value) {
     insert(end() + 1, value);
-    ++capacity;
 }
 
 LinkedList::iterator LinkedList::insert(LinkedList::iterator before, const value_type &value) {
@@ -169,6 +166,7 @@ LinkedList::iterator LinkedList::insert(LinkedList::iterator before, const value
     Node* toInsert = new Node(value, last, after);
     last -> next = toInsert;
     after -> prev = toInsert;
+    ++capacity;
     return LinkedList::iterator(toInsert);
 }
 
