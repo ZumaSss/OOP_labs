@@ -3,7 +3,7 @@
 
 using namespace testing;
 
-TEST(TestList, TestingList) {
+TEST(test, TestingList) {
     LinkedList newList;
     ASSERT_TRUE(newList.empty());
 
@@ -81,7 +81,7 @@ TEST(TestList, TestingList) {
     EXPECT_EQ(moveList, newList);
 }
 
-TEST(TestList, TestingIterators) {
+TEST(test, TestingIterators) {
     LinkedList newList;
     for (int i = 0; i < 20; ++i) {
         newList.push_back(i);
