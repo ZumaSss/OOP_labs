@@ -31,6 +31,7 @@ LinkedList::~LinkedList() {
 }
 
 LinkedList &LinkedList::operator=(const LinkedList &other) {
+    if (this == &other) return *this;
     clear();
     for (LinkedList::const_iterator it = other.cbegin(); it != other.cend(); ++it) {
         push_back(*it);
@@ -39,6 +40,7 @@ LinkedList &LinkedList::operator=(const LinkedList &other) {
 }
 
 LinkedList &LinkedList::operator=(LinkedList &&other) {
+    if (this == &other) return *this;
     clear();
     delete fictNode;
     fictNode = other.fictNode;
@@ -60,12 +62,20 @@ LinkedList::iterator LinkedList::begin() {
     return LinkedList::iterator(fictNode -> next);
 }
 
+LinkedList::const_iterator LinkedList::begin() const {
+    return LinkedList::const_iterator(fictNode -> next);
+}
+
 LinkedList::const_iterator LinkedList::cbegin() const {
     return LinkedList::const_iterator(fictNode -> next);
 }
 
 LinkedList::iterator LinkedList::end() {
     return LinkedList::iterator(fictNode);
+}
+
+LinkedList::const_iterator LinkedList::end() const {
+    return LinkedList::const_iterator(fictNode);
 }
 
 LinkedList::const_iterator LinkedList::cend() const {
@@ -157,7 +167,7 @@ void LinkedList::push_back(const value_type &value) {
 }
 
 void LinkedList::push_front(const value_type &value) {
-    insert(end() + 1, value);
+    insert(begin(), value);
 }
 
 LinkedList::iterator LinkedList::insert(LinkedList::iterator before, const value_type &value) {
@@ -182,6 +192,8 @@ bool operator!=(const LinkedList &left, const LinkedList &right) {
 }
 
 bool operator==(const LinkedList &left, const LinkedList &right) {
+    if (&left == &right) return true;
+    if (left.size() != right.size()) return false;
     LinkedList::const_iterator it1 = left.cbegin();
     LinkedList::const_iterator it2 = right.cbegin();
     for (; it1 != left.cend() && it2 != right.cend(); ++it1, ++it2) {
@@ -189,6 +201,20 @@ bool operator==(const LinkedList &left, const LinkedList &right) {
             return false;
         }
     }
-
     return !(it1 != left.cend() || it2 != right.cend());
+}
+
+LinkedList operator+(const LinkedList & left, const LinkedList & right) {
+    LinkedList newList;
+    if (!left.empty()) {
+        for (LinkedList::const_iterator it = left.cbegin(); it != left.cend(); ++it) {
+            newList.push_back((*it));
+        }
+    }
+    if (!right.empty()) {
+        for (LinkedList::const_iterator it = right.cbegin(); it != right.cend(); ++it) {
+            newList.push_back((*it));
+        }
+    }
+    return newList;
 }
