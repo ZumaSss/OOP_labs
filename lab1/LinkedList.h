@@ -83,10 +83,12 @@ public:
     /* Доступ к итераторам */
     //Возвращает итератор, указывающий на первый элемент списка.
     iterator begin();
+    const_iterator begin() const;
     const_iterator cbegin() const;
     //Возвращает итератор, указывающий на элемент списка, следующий за последним
     //т.е. отсутствующий в списке.
     iterator end();
+    const_iterator end() const;
     const_iterator cend() const;
 
     /* Размерность */
@@ -112,7 +114,6 @@ public:
     int remove(const value_type & value);
     //Очищает список.
     void clear();
-
     //Удаляет последний элемент списка.
     void pop_back();
     //Удаляет первый элемент списка.
