@@ -137,3 +137,29 @@ TEST(test, TestingIterators) {
     EXPECT_TRUE(newList.end() == it);
     EXPECT_TRUE(newList.cend() == cIt);
 }
+
+TEST(test, TestingListOperator) {
+    LinkedList left;
+    LinkedList right;
+    LinkedList newList;
+    ASSERT_TRUE(left.empty());
+    ASSERT_TRUE(right.empty());
+    ASSERT_TRUE(newList.empty());
+
+    left.push_back(value_type());
+    left.push_back(value_type());
+    right.push_back(value_type());
+    right.push_back(value_type());
+    right.push_back(value_type());
+
+    newList = left + right;
+    EXPECT_EQ(newList.size(), 5);
+
+    left.clear();
+    EXPECT_EQ(left.size(), 0);
+    right.clear();
+    EXPECT_EQ(right.size(), 0);
+    newList.clear();
+    EXPECT_EQ(newList.size(), 0);
+}
+
