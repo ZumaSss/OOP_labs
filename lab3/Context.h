@@ -47,7 +47,6 @@ public:
     void setState(States state);
     bool isGameEnded();
     void addObserver(Viewer viewer);
-    char getFrom(int i, int j);
     char field[3][3]{};
 };
 
