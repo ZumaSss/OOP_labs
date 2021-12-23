@@ -1,3 +1,0 @@
-C:/Users/ivana/CLionProjects/kursovaya/cmake-build-debug/CMakeFiles/kursovaya.dir
-C:/Users/ivana/CLionProjects/kursovaya/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/ivana/CLionProjects/kursovaya/cmake-build-debug/CMakeFiles/rebuild_cache.dir
