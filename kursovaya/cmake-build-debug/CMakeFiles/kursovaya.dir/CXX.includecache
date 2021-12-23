@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/ivana/CLionProjects/kursovaya/matrix.cpp
+matrix.h
+C:/Users/ivana/CLionProjects/kursovaya/matrix.h
+
+C:/Users/ivana/CLionProjects/kursovaya/matrix.h
+iostream
+-
+ctime
+-
+exception
+-
+fstream
+-
+memory
+-
+cmath
+-
+
